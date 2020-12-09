@@ -1,0 +1,7 @@
+The algorithm should be visualized step-by-step. Therefore the QuicksortAlgorithm class should have some kind of nextStep() function, which will update the object's array.
+The main class can then run quicksorthAlgorithm.nextStep(); and repaint the canvas on a loop until the nextStep function returns that it's done.
+
+Each element should have a sound representing it which will be played when it is the subject of nextStep(). The higher/lower the value of the element, the higher/lower the tone of the sound.
+This means that the sorting algorithm will have an auditory representation as well as a visual one.
+
+Useful pseudocode for implementing the algorithm: https://www.geeksforgeeks.org/quick-sort/
