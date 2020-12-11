@@ -7,12 +7,16 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class AlgorithmGraphics extends JPanel {
+public class BarChart extends JPanel {
 	int elementWidth = 14;
-	int gapWidth = 1;
+	int gapWidth = 2;
 	int[] array;
 	
-	public AlgorithmGraphics(int[] array) {
+	/**
+	 * Creates an object which visualizes the data of an array, creating a bar chart representing the value of each element.
+	 * @param array
+	 */
+	public BarChart(int[] array) {
 		this.array = array;
 	}
 	
@@ -24,6 +28,9 @@ public class AlgorithmGraphics extends JPanel {
 		
 		g2D.setColor(Color.WHITE);
 		g2D.setStroke(new BasicStroke(elementWidth));
-		g2D.drawLine(100, 800, 100, 100);
+		
+		for(int i = 0; i < array.length; i++) {
+			g2D.drawLine(100 + i*gapWidth + i*elementWidth, 872, 100 + i*gapWidth + i*elementWidth, array[i]);
+		}
 	}
 }

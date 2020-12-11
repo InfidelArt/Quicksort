@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class QuicksortArray {
 	int[] arrayToSort;	
+	/**
+	 * @param elementCount The amount of elements the object's array should have
+	 * @param minValue The minimum value of an element
+	 * @param maxValue The maximum value of an element
+	 */
 	public QuicksortArray(int elementCount, int minValue, int maxValue) {
 		arrayToSort = new int[elementCount];
 		
