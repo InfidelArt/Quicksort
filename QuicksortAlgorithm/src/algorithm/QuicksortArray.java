@@ -5,7 +5,8 @@ import java.util.Random;
 // What determines the next step in the algorithm?
 
 public class QuicksortArray {
-	int[] arrayToSort;	
+	private int[] arrayToSort;	
+	private int pivot;
 	/**
 	 * @param elementCount The amount of elements the object's array should have
 	 * @param minValue The minimum value of an element
@@ -18,19 +19,29 @@ public class QuicksortArray {
 		for(int i = 0; i < arrayToSort.length; i++) {
 			arrayToSort[i] = rn.nextInt(maxValue - minValue + 1) + minValue;
 		}
+		this.pivot = 0;
 	}
 	@SuppressWarnings("unused") // Remember to remove this
-	private static void partition(int[] array, int lo, int hi) {
+	private static int partition(int[] array, int lo, int hi, BarChart graphics) throws InterruptedException {
 		int pivot = array[hi]; // We choose the last element as pivot
+		graphics.setPivot(hi);
 		int smaller = lo - 1; // This will be incremented before it gets used. It keeps track of the last element found that was smaller than the pivot.
 		
 		for (int i = lo; i <= hi-1; i++) { // Go through the subset of the array
+			graphics.setCurrentIndex(i);
 			if(array[i] < pivot) {
 				smaller++; // Since the current element is smaller than the pivot, the position of the last smallest element found is increased.
+				graphics.setSmallerIndex(smaller);
 				swap(array, i, smaller);
+				graphics.repaint();
+				Thread.sleep(60);
+				
 			}
 		}
-		swap(array, smaller + 1, hi);
+		swap(array, smaller + 1, hi); // Take the pivot and put it to the right of the last element that was smaller than it
+		graphics.repaint();
+		Thread.sleep(60);
+		return smaller + 1;
 	}
 	/**
 	 *  Swaps the position of two elements in the given array
@@ -55,11 +66,14 @@ public class QuicksortArray {
 		}
 		return elements;
 	}
-	public void partitionAndPrint() {  // DEBUGGING METHOD, REMEMBER TO REMOVE
-		System.out.println(listArrayElements());
-		partition(this.arrayToSort, 0, this.arrayToSort.length-1);
-		System.out.println(listArrayElements());
+	public void quicksort(int lo, int hi, BarChart graphics) throws InterruptedException {
+		if(lo < hi) {
+			pivot = partition(this.arrayToSort, lo, hi, graphics);
+			quicksort(lo, pivot - 1, graphics);
+			quicksort(pivot + 1, hi, graphics);
+		}
 	}
+
 	/**
 	 * @return The array of the QuicksortArray object
 	 */
