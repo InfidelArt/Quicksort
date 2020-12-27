@@ -13,6 +13,7 @@ public class BarChart extends JPanel {
 	private int pivotIndex;
 	private int currentIndex;
 	private int smallerIndex;
+	public Graphics g;
 	QuicksortArray array;
 	
 	/**
@@ -23,11 +24,12 @@ public class BarChart extends JPanel {
 		this.array = array;
 		this.pivotIndex = -1;
 		this.currentIndex = -1;
-		this.smallerIndex = -1;
+		this.smallerIndex = -1;		
 	}
-	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		this.g = g;
 		this.setBackground(Color.BLACK);	
 		
 		Graphics2D g2D = (Graphics2D) g; // Will give a wider selection of useful functions for drawing
@@ -57,6 +59,9 @@ public class BarChart extends JPanel {
 			
 		}
 		
+	}
+	public void aaa() {
+		System.out.println("Works");
 	}
 	public void setPivot(int pivotIndex) {
 		this.pivotIndex = pivotIndex;

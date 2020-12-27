@@ -33,13 +33,13 @@ public class QuicksortArray {
 				smaller++; // Since the current element is smaller than the pivot, the position of the last smallest element found is increased.
 				graphics.setSmallerIndex(smaller);
 				swap(array, i, smaller);
-				graphics.repaint();
+				graphics.paintImmediately(0, 0, 872, 872);
 				Thread.sleep(60);
 				
 			}
 		}
 		swap(array, smaller + 1, hi); // Take the pivot and put it to the right of the last element that was smaller than it
-		graphics.repaint();
+		graphics.paintImmediately(0,0,872,872);
 		Thread.sleep(60);
 		return smaller + 1;
 	}
@@ -73,7 +73,13 @@ public class QuicksortArray {
 			quicksort(pivot + 1, hi, graphics);
 		}
 	}
-
+	public void refreshArray(int elementCount, int minValue, int maxValue) {
+		arrayToSort = new int[elementCount];
+		Random rn = new Random();
+		for(int i = 0; i < arrayToSort.length; i++) {
+			arrayToSort[i] = rn.nextInt(maxValue - minValue + 1) + minValue;
+		}
+	}
 	/**
 	 * @return The array of the QuicksortArray object
 	 */
