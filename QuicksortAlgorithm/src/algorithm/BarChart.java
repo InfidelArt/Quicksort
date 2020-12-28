@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class BarChart extends JPanel {
-	private int elementWidth = 14;
-	private int gapWidth = 2;
+	private final int ELEMENT_WIDTH = 14;
+	private final int GAP_WIDTH = 2;
 	private int pivotIndex;
 	private int currentIndex;
 	private int smallerIndex;
@@ -35,33 +35,36 @@ public class BarChart extends JPanel {
 		Graphics2D g2D = (Graphics2D) g; // Will give a wider selection of useful functions for drawing
 		
 		g2D.setColor(Color.WHITE);
-		g2D.setStroke(new BasicStroke(elementWidth));
+		g2D.setStroke(new BasicStroke(ELEMENT_WIDTH));
 		
 		for(int i = 0; i < array.getArray().length; i++) {
 			if (i == this.pivotIndex) {
 				g2D.setColor(Color.ORANGE);
-				g2D.drawLine(100 + i*gapWidth + i*elementWidth, 872, 100 + i*gapWidth + i*elementWidth, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
 				g2D.setColor(Color.WHITE);
 			}
 			else if (i == this.currentIndex) {
 				g2D.setColor(Color.GREEN);
-				g2D.drawLine(100 + i*gapWidth + i*elementWidth, 872, 100 + i*gapWidth + i*elementWidth, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
 				g2D.setColor(Color.WHITE);
 			}
 			else if (i == this.smallerIndex) {
 				g2D.setColor(Color.BLUE);
-				g2D.drawLine(100 + i*gapWidth + i*elementWidth, 872, 100 + i*gapWidth + i*elementWidth, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
 				g2D.setColor(Color.WHITE);
 			}
 			else {
-				g2D.drawLine(100 + i*gapWidth + i*elementWidth, 872, 100 + i*gapWidth + i*elementWidth, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
 			}
 			
 		}
 		
 	}
-	public void aaa() {
-		System.out.println("Works");
+	public void resetIndexes(QuicksortArray array) {
+		this.array = array;
+		this.pivotIndex = -1;
+		this.currentIndex = -1;
+		this.smallerIndex = -1;		
 	}
 	public void setPivot(int pivotIndex) {
 		this.pivotIndex = pivotIndex;

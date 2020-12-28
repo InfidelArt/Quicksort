@@ -7,6 +7,7 @@ import java.util.Random;
 public class QuicksortArray {
 	private int[] arrayToSort;	
 	private int pivot;
+	private static final int PAUSE_BETWEEN_STEPS = 60; // milliseconds
 	/**
 	 * @param elementCount The amount of elements the object's array should have
 	 * @param minValue The minimum value of an element
@@ -34,13 +35,13 @@ public class QuicksortArray {
 				graphics.setSmallerIndex(smaller);
 				swap(array, i, smaller);
 				graphics.paintImmediately(0, 0, 872, 872);
-				Thread.sleep(60);
+				Thread.sleep(PAUSE_BETWEEN_STEPS);
 				
 			}
 		}
 		swap(array, smaller + 1, hi); // Take the pivot and put it to the right of the last element that was smaller than it
 		graphics.paintImmediately(0,0,872,872);
-		Thread.sleep(60);
+		Thread.sleep(PAUSE_BETWEEN_STEPS);
 		return smaller + 1;
 	}
 	/**
