@@ -4,11 +4,15 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-/* 2020-12-28
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+/* 2020-12-29
  * - Provide the alternative to use "median-of-three" as choice of pivot
  * - Tidy up code by keeping better track of constants and using less magic numbers
- * - Increase the size of the array and decrease delay between steps
+ * - Increase the size of the array
  */
 
 public class Main {
@@ -25,8 +29,9 @@ public class Main {
 	}
 	
 	private static void constructOptionPane() {
-		Frame optionFrame = new Frame(OPTION_WINDOW_WIDTH, OPTION_WINDOW_HEIGHT);	
-		JPanel optionPanel = new JPanel(new GridBagLayout());
+		Frame optionFrame = new Frame(OPTION_WINDOW_WIDTH, OPTION_WINDOW_HEIGHT);
+		JPanel optionPanel = new JPanel();
+		JPanel buttonPanel = new JPanel(new GridBagLayout());
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -38,7 +43,9 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				try {	
 					algorithmGraphics.repaint();
+					optionFrame.setVisible(false);
 					quicksortArray.quicksort(0, quicksortArray.getArray().length-1, algorithmGraphics);
+					optionFrame.setVisible(true);
 					
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
@@ -46,8 +53,31 @@ public class Main {
 			}
 		});
 		
-		optionPanel.add(startButton);
-		optionPanel.add(refreshButton);
+		buttonPanel.add(startButton);
+		buttonPanel.add(refreshButton);
+		optionPanel.add(buttonPanel);
+		
+		// Slider
+		final int SLIDER_MIN_VALUE = 1;
+		final int SLIDER_MAX_VALUE = 100;
+		final int SLIDER_INITIAL_VALUE = quicksortArray.getPauseBetweenSteps();
+		JPanel sliderPanel = new JPanel(new GridBagLayout());
+		JSlider delaySlider = new JSlider(SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_INITIAL_VALUE);
+		delaySlider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider)e.getSource();
+				quicksortArray.setPauseBetweenSteps((int)source.getValue());
+				
+			}
+			
+		});
+		sliderPanel.add(delaySlider);
+		
+		optionPanel.add(sliderPanel);
+		
+		
 		optionFrame.add(optionPanel);
 		optionFrame.setLocation(GRAPHICS_WINDOW_WIDTH,0); // To make the window appear to the right of the graphics pane
 	}
