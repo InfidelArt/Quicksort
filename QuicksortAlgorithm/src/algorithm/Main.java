@@ -9,16 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-/* 2020-12-29
- * - Provide the alternative to use "median-of-three" as choice of pivot
- * - Tidy up code by keeping better track of constants and using less magic numbers
- * - Increase the size of the array
- */
 
 public class Main {
 	private static final int GRAPHICS_WINDOW_WIDTH = 872;
 	private static final int GRAPHICS_WINDOW_HEIGHT = 872;
-	private static final int OPTION_WINDOW_WIDTH = 250;
+	private static final int OPTION_WINDOW_WIDTH = 280;
 	private static final int OPTION_WINDOW_HEIGHT = 120;
 	private static BarChart algorithmGraphics;
 	private static QuicksortArray quicksortArray;
@@ -62,6 +57,7 @@ public class Main {
 		final int SLIDER_MAX_VALUE = 100;
 		final int SLIDER_INITIAL_VALUE = quicksortArray.getPauseBetweenSteps();
 		JPanel sliderPanel = new JPanel(new GridBagLayout());
+		JLabel sliderLabel = new JLabel("Speed");
 		JSlider delaySlider = new JSlider(SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_INITIAL_VALUE);
 		delaySlider.addChangeListener(new ChangeListener() {
 			
@@ -73,6 +69,7 @@ public class Main {
 			}
 			
 		});
+		sliderPanel.add(sliderLabel);
 		sliderPanel.add(delaySlider);
 		
 		optionPanel.add(sliderPanel);

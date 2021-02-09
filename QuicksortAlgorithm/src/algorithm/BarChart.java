@@ -7,7 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class BarChart extends JPanel {
+public class BarChart extends JPanel {	
+	private static final long serialVersionUID = 1L;
 	private final int ELEMENT_WIDTH = 14;
 	private final int GAP_WIDTH = 2;
 	private int pivotIndex;
@@ -40,21 +41,21 @@ public class BarChart extends JPanel {
 		for(int i = 0; i < array.getArray().length; i++) {
 			if (i == this.pivotIndex) {
 				g2D.setColor(Color.ORANGE);
-				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872 - array.getArray()[i]);
 				g2D.setColor(Color.WHITE);
 			}
 			else if (i == this.currentIndex) {
 				g2D.setColor(Color.GREEN);
-				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872 - array.getArray()[i]);
 				g2D.setColor(Color.WHITE);
 			}
 			else if (i == this.smallerIndex) {
 				g2D.setColor(Color.BLUE);
-				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872 - array.getArray()[i]);
 				g2D.setColor(Color.WHITE);
 			}
 			else {
-				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, array.getArray()[i]);
+				g2D.drawLine(100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872, 100 + i*GAP_WIDTH + i*ELEMENT_WIDTH, 872 - array.getArray()[i]);
 			}
 			
 		}

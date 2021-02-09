@@ -22,7 +22,6 @@ public class QuicksortArray {
 		}
 		this.pivot = 0;
 	}
-	@SuppressWarnings("unused") // Remember to remove this
 	private int partition(int[] array, int lo, int hi, BarChart graphics) throws InterruptedException {
 		int pivot = array[hi]; // We choose the last element as pivot
 		graphics.setPivot(hi);
@@ -55,18 +54,7 @@ public class QuicksortArray {
 			
 		return array;
 	}
-	/**
-	 *  Returns a string with a line for each element in the array, displaying its value.
-	 *  Useful for debugging in the console.
-	 * @return The multi-line string containing the values of each element
-	 */
-	public String listArrayElements() {
-		String elements = "";
-		for (int i = 0; i < arrayToSort.length; i++) {
-			elements += "Element " + i + ":   " + arrayToSort[i] + "\n";
-		}
-		return elements;
-	}
+
 	public void quicksort(int lo, int hi, BarChart graphics) throws InterruptedException {
 		if(lo < hi) {
 			pivot = partition(this.arrayToSort, lo, hi, graphics);
